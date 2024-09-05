@@ -1,11 +1,13 @@
 <div class="dv-border-box-3">
-  <svg class="dv-border-svg-container" [attr.width]="width()" [attr.height]="height()">
+  @let w = width();
+  @let h = height();
+  <svg class="dv-border-svg-container" [attr.width]="w" [attr.height]="h">
     <polygon [attr.fill]="backgroundColor()" [attr.points]="backgroundPoints()" />
     @let _colors = colors();
-    <polyline class="dv-bb3-line1" [attr.stroke]="_colors[0]" [attr.points]="line1Points()" />
     <polyline class="dv-bb3-line2" [attr.stroke]="_colors[1]" [attr.points]="line2Points()" />
     <polyline class="dv-bb3-line2" [attr.stroke]="_colors[1]" [attr.points]="line3Points()" />
     <polyline class="dv-bb3-line2" [attr.stroke]="_colors[1]" [attr.points]="line4Points()" />
+    <polyline class="dv-bb3-line1" [attr.stroke]="_colors[0]" [attr.points]="line1Points()" />
   </svg>
 
   <div class="border-box-content">
