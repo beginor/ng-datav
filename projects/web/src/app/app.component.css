@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+}
+
+.demos {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-v-demo {
+  margin: 8px;
+  height: 300px;
+}
