@@ -1,5 +1,7 @@
 <div class="dv-border-box-1">
-  <svg class="border" [attr.width]="width" [attr.height]="height">
+  @let w = width();
+  @let h = height();
+  <svg class="border" [attr.width]="w" [attr.height]="h">
     <polygon [attr.fill]="backgroundColor()"
     [attr.points]="getBorderPoints()"/>
   </svg>

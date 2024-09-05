@@ -1,4 +1,4 @@
-import { Component, input, OnInit, inject, OnDestroy, OutputRefSubscription } from '@angular/core';
+import { Component, input, signal, OnInit, inject, OnDestroy, OutputRefSubscription, computed } from '@angular/core';
 
 import { AutoSizeDirective, Size } from '../../directives/auto-size.directive';
 
@@ -8,7 +8,7 @@ import { AutoSizeDirective, Size } from '../../directives/auto-size.directive';
     imports: [],
     templateUrl: './border-box-1.component.html',
     styleUrl: './border-box-1.component.css',
-    host: { 'class': 'dv-border-box-1' },
+    // host: { 'class': 'dv-border-box-1' },
     hostDirectives: [AutoSizeDirective],
 })
 export class BorderBox1Component implements OnInit, OnDestroy {
@@ -16,14 +16,14 @@ export class BorderBox1Component implements OnInit, OnDestroy {
     public colors = input<string[]>(['#4fd2dd', '#235fa7']);
     public backgroundColor = input<string>('transparent');
 
-    protected width = 0;
-    protected height = 0;
-
     protected border = ['left-top', 'right-top', 'left-bottom', 'right-bottom'];
 
-    protected getBorderPoints() {
-        const width = this.width;
-        const height = this.height;
+    protected width = signal(0);
+    protected height = signal(0);
+
+    protected getBorderPoints = computed(() => {
+        const width = this.width();
+        const height = this.height();
         return [
             `10, 27`,
             `10, ${height - 27}`,
@@ -66,22 +66,23 @@ export class BorderBox1Component implements OnInit, OnDestroy {
             `13, 21`,
             `13, 24`
         ].join(' ');
-    }
+    });
 
     private autoSize = inject(AutoSizeDirective, { self: true });
     private autoSize$?: OutputRefSubscription;
 
     public ngOnInit() {
         this.autoSize$ = this.autoSize.sizeChanged.subscribe(
-            size => { this.onSizeChanged(size); });
+            size => { this.onSizeChanged(size); }
+        );
     }
 
     public ngOnDestroy(): void {
         this.autoSize$?.unsubscribe();
     }
 
-    public onSizeChanged({ width, height }: Size) {
-        this.width = width;
-        this.height = height;
+    private onSizeChanged({ width, height }: Size) {
+        this.width.set(width);
+        this.height.set(height);
     }
 }
