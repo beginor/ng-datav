@@ -9,3 +9,4 @@ export * from './lib/ng-datav.module';
 export * from './lib/directives/auto-size.directive';
 export * from './lib/components/border-box-1/border-box-1.component';
 export * from './lib/components/border-box-2/border-box-2.component';
+export * from './lib/components/border-box-3/border-box-3.component';
