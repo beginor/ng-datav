@@ -1,6 +1,5 @@
 import { Component, signal, input, OnInit, inject, OnDestroy, OutputRefSubscription, computed } from '@angular/core';
 
-
 import { AutoSizeDirective, Size } from '../../directives/auto-size.directive';
 
 @Component({
