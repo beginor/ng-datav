@@ -1,4 +1,4 @@
-import { Component, input, signal, OnInit, inject, OnDestroy, OutputRefSubscription, computed } from '@angular/core';
+import { Component, input, signal, OnInit, inject, OnDestroy, OutputRefSubscription } from '@angular/core';
 
 import { AutoSizeDirective, Size } from '../../directives/auto-size.directive';
 
@@ -8,7 +8,6 @@ import { AutoSizeDirective, Size } from '../../directives/auto-size.directive';
     imports: [],
     templateUrl: './border-box-1.component.html',
     styleUrl: './border-box-1.component.css',
-    // host: { 'class': 'dv-border-box-1' },
     hostDirectives: [AutoSizeDirective],
 })
 export class BorderBox1Component implements OnInit, OnDestroy {
@@ -21,9 +20,7 @@ export class BorderBox1Component implements OnInit, OnDestroy {
     protected width = signal(0);
     protected height = signal(0);
 
-    protected getBorderPoints = computed(() => {
-        const width = this.width();
-        const height = this.height();
+    protected borderPoints(width: number, height: number): string {
         return [
             `10, 27`,
             `10, ${height - 27}`,
@@ -66,7 +63,7 @@ export class BorderBox1Component implements OnInit, OnDestroy {
             `13, 21`,
             `13, 24`
         ].join(' ');
-    });
+    }
 
     private autoSize = inject(AutoSizeDirective, { self: true });
     private autoSize$?: OutputRefSubscription;

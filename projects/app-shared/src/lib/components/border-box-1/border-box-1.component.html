@@ -2,8 +2,7 @@
   @let w = width();
   @let h = height();
   <svg class="border" [attr.width]="w" [attr.height]="h">
-    <polygon [attr.fill]="backgroundColor()"
-    [attr.points]="getBorderPoints()"/>
+    <polygon [attr.fill]="backgroundColor()" [attr.points]="borderPoints(w, h)"/>
   </svg>
   @let _colors = colors();
   @for (item of border; track item) {

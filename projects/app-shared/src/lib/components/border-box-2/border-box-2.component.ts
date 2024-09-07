@@ -1,4 +1,4 @@
-import { Component, signal, input, OnInit, inject, OnDestroy, OutputRefSubscription, computed } from '@angular/core';
+import { Component, signal, input, OnInit, inject, OnDestroy, OutputRefSubscription } from '@angular/core';
 
 import { AutoSizeDirective, Size } from '../../directives/auto-size.directive';
 
@@ -18,21 +18,15 @@ export class BorderBox2Component implements OnInit, OnDestroy {
     protected width = signal(0);
     protected height = signal(0);
 
-    protected backgroundPoints = computed(()  =>  {
-        const width = this.width();
-        const height = this.height();
+    protected backgroundPoints(width: number, height: number): string  {
         return `7, 7 ${width - 7}, 7 ${width - 7}, ${height - 7} 7, ${height - 7}`;
-    });
-    protected border1Points = computed(() => {
-        const width = this.width();
-        const height = this.height();
+    }
+    protected border1Points(width: number, height: number): string{
         return `2, 2 ${width - 2} ,2 ${width - 2}, ${height - 2} 2, ${height - 2} 2, 2`;
-    });
-    protected border2Points = computed(() => {
-        const width = this.width();
-        const height = this.height();
+    }
+    protected border2Points(width: number, height: number): string {
         return `6, 6 ${width - 6} ,6 ${width - 6}, ${height - 6} 6, ${height - 6} 6, 6`;
-    });
+    }
 
     private autoSize = inject(AutoSizeDirective, { self: true });
     private autoSize$?: OutputRefSubscription;
