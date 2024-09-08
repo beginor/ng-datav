@@ -2,7 +2,6 @@ import { Component, signal, input, OnInit, inject, OnDestroy, OutputRefSubscript
 
 import { AutoSizeDirective, Size } from '../../directives/auto-size.directive';
 
-
 @Component({
     selector: 'dv-border-box-4',
     standalone: true,
