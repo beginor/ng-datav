@@ -1,0 +1,23 @@
+<div class="dv-border-box-4">
+  @let w = width();
+  @let h = height();
+  <svg class="dv-border-svg-container" [class.dv-reverse]="reverse()" [attr.width]="w" [attr.height]="h">
+    <polygon [attr.fill]="backgroundColor()" [attr.points]="backgroundPoints(w, h)" />
+    @let _colors = colors();
+    <polyline class="dv-bb4-line-1 sw1" [attr.stroke]="_colors[0]" [attr.points]="line1Points(w, h)" />
+    <polyline class="dv-bb4-line-2 sw1" [attr.stroke]="_colors[1]" [attr.points]="line2Points(h)" />
+
+    <polyline class="dv-bb4-line-3 sw3" [attr.stroke]="_colors[0]" [attr.points]="line3Points(h)" />
+    <polyline class="dv-bb4-line-4 sw3" [attr.stroke]="_colors[0]" points="28, 24 13, 41 13, 64" />
+    <polyline class="dv-bb4-line-5 sw1" [attr.stroke]="_colors[0]" points="5, 45 5, 140" />
+    <polyline class="dv-bb4-line-6 sw1" [attr.stroke]="_colors[1]" points="14, 75 14, 180" />
+    <polyline class="dv-bb4-line-7 sw1" [attr.stroke]="_colors[1]" points="55, 11 147, 11 167, 26 250, 26" />
+    <polyline class="dv-bb4-line-8 sw3" [attr.stroke]="_colors[1]" points="158, 5 173, 16" />
+    <polyline class="dv-bb4-line-9 sw3" [attr.stroke]="_colors[0]" [attr.points]="line9Points(w)" />
+    <polyline class="dv-bb4-line-10 sw1" [attr.stroke]="_colors[1]" [attr.points]="line10Points(w)" />
+  </svg>
+
+  <div class="border-box-content">
+    <ng-content></ng-content>
+  </div>
+</div>
