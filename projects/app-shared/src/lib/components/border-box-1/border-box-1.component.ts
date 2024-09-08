@@ -20,6 +20,24 @@ export class BorderBox1Component implements OnInit, OnDestroy {
     protected width = signal(0);
     protected height = signal(0);
 
+    private autoSize = inject(AutoSizeDirective, { self: true });
+    private autoSize$?: OutputRefSubscription;
+
+    public ngOnInit() {
+        this.autoSize$ = this.autoSize.sizeChanged.subscribe(
+            size => { this.onSizeChanged(size); }
+        );
+    }
+
+    public ngOnDestroy(): void {
+        this.autoSize$?.unsubscribe();
+    }
+
+    private onSizeChanged({ width, height }: Size) {
+        this.width.set(width);
+        this.height.set(height);
+    }
+
     protected borderPoints(width: number, height: number): string {
         return [
             `10, 27`,
@@ -63,23 +81,5 @@ export class BorderBox1Component implements OnInit, OnDestroy {
             `13, 21`,
             `13, 24`
         ].join(' ');
-    }
-
-    private autoSize = inject(AutoSizeDirective, { self: true });
-    private autoSize$?: OutputRefSubscription;
-
-    public ngOnInit() {
-        this.autoSize$ = this.autoSize.sizeChanged.subscribe(
-            size => { this.onSizeChanged(size); }
-        );
-    }
-
-    public ngOnDestroy(): void {
-        this.autoSize$?.unsubscribe();
-    }
-
-    private onSizeChanged({ width, height }: Size) {
-        this.width.set(width);
-        this.height.set(height);
     }
 }

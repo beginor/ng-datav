@@ -18,16 +18,6 @@ export class BorderBox2Component implements OnInit, OnDestroy {
     protected width = signal(0);
     protected height = signal(0);
 
-    protected backgroundPoints(width: number, height: number): string  {
-        return `7, 7 ${width - 7}, 7 ${width - 7}, ${height - 7} 7, ${height - 7}`;
-    }
-    protected border1Points(width: number, height: number): string{
-        return `2, 2 ${width - 2} ,2 ${width - 2}, ${height - 2} 2, ${height - 2} 2, 2`;
-    }
-    protected border2Points(width: number, height: number): string {
-        return `6, 6 ${width - 6} ,6 ${width - 6}, ${height - 6} 6, ${height - 6} 6, 6`;
-    }
-
     private autoSize = inject(AutoSizeDirective, { self: true });
     private autoSize$?: OutputRefSubscription;
 
@@ -44,6 +34,18 @@ export class BorderBox2Component implements OnInit, OnDestroy {
     private onSizeChanged({ width, height }: Size) {
         this.width.set(width);
         this.height.set(height);
+    }
+
+    protected backgroundPoints(width: number, height: number): string  {
+        return `7, 7 ${width - 7}, 7 ${width - 7}, ${height - 7} 7, ${height - 7}`;
+    }
+
+    protected border1Points(width: number, height: number): string{
+        return `2, 2 ${width - 2} ,2 ${width - 2}, ${height - 2} 2, ${height - 2} 2, 2`;
+    }
+
+    protected border2Points(width: number, height: number): string {
+        return `6, 6 ${width - 6} ,6 ${width - 6}, ${height - 6} 6, ${height - 6} 6, 6`;
     }
 
 }
