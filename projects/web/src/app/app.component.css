@@ -6,11 +6,17 @@
 }
 
 .demos {
+  width: 50%;
+  margin: auto;
   display: flex;
   flex-direction: column;
 }
 
 .data-v-demo {
   margin: 8px;
+  padding: 32px;
   height: 230px;
+  border-radius: 8px;
+  background-color: #000000;
+  color: #e6e6e6;
 }
